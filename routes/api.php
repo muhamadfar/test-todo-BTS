@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ChecklistController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,10 +26,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/checklists', [ChecklistController::class, 'index']);
-    Route::post('/checklists', [ChecklistController::class, 'store']);
-    Route::get('/checklists/{checklist}', [ChecklistController::class, 'show']);
-    Route::delete('/checklists/{checklist}', [ChecklistController::class, 'destroy']);
+Route::get('/checklists', [ChecklistController::class, 'index']);
+Route::post('/checklists', [ChecklistController::class, 'store']);
+Route::get('/checklists/{checklist}', [ChecklistController::class, 'show']);
+Route::delete('/checklists/{checklist}', [ChecklistController::class, 'destroy']);
+
 
     Route::post('/checklists/{checklist}/items', [ItemController::class, 'store']);
     Route::get('/items/{item}', [ItemController::class, 'show']);

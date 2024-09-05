@@ -9,8 +9,15 @@ class ItemController extends Controller
 {
     public function store(Request $request, Checklist $checklist)
     {
-        $request->validate(['name' => 'required']);
-        $item = $checklist->items()->create($request->all());
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $item = $checklist->items()->create([
+            'name' => $request->name,
+            'is_completed' => false,
+        ]);
+
         return response()->json($item, 201);
     }
 

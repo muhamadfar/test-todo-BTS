@@ -15,8 +15,12 @@ class ChecklistController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate([
+            'name' => 'required|unique:checklists,name,NULL,id,user_id,' . auth()->id(),
+        ]);
+
         $checklist = auth()->user()->checklists()->create($request->all());
+
         return response()->json($checklist, 201);
     }
 
